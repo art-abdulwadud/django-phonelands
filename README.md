@@ -1,8 +1,8 @@
-## Phonelands
+# Phonelands
 
 A fullstack eCommerce webapp for selling cell phones created using Django framework.
 
-### Creating vitrual enviroment and a Django preoject
+## Getting Started
 
 Create a folder. Open the terminal and change directory to our folder.
 For creating a virtual enviroment, type this in the terminal(Using Ubuntu)
@@ -26,5 +26,53 @@ pip install django
 Create a django project
 
 ```
-djangi-admin startproject name_of_app
+djangi-admin startproject name_of_project
 ```
+
+Run django server
+
+```
+python manage.py runserver
+```
+
+Create an app within our django project
+
+```
+python manage.py startapp name_of_app
+```
+
+Open the new folder created for the app and add a method to the `views.py` file.
+
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+	return HttpResponse('<h1>My Django App</h1>')
+```
+
+Create a `urls.py` file and create a route for the view method we just created
+
+```
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+	path('', views.index, name='index')
+]
+```
+
+Back to the main `ulrs.py` file, which is in the same directory as `setting.py`, and edit it
+
+```
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+	path('', include('pages.urls')),
+    path('admin/', admin.site.urls),
+]
+```
+
+#### Note: `include` has to be imported
