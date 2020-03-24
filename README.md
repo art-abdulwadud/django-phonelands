@@ -141,9 +141,11 @@ Edit `setting.py` file
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'name_of_project/static')
 ]
 ```
+
+Note: `STATICFILES_DIRS` setting should not contain the `STATIC_ROOT` setting
 
 Save and type this in the terminal
 
