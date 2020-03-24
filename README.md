@@ -75,4 +75,30 @@ urlpatterns = [
 ]
 ```
 
-#### Note: `include` has to be imported
+Note: `include` has to be imported
+
+## Adding templates
+
+Go to `setting.py` and in the `TEMPLATES`, edit `DIRS`
+
+```
+'DIRS': [os.path.join(BASE_DIR, 'templates')]
+```
+
+`os.path.join` here takes in two arguments, the location/directory of the templates folder and it's name.
+Now create the templates folder and add `index.html` file.
+
+```
+<h1>Home Page</h1>
+```
+
+Then edit `views.py` file
+
+```
+from django.shortcuts import render
+
+def index(request):
+	return render(request, 'index.html')
+```
+
+And that's it.
