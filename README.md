@@ -102,3 +102,51 @@ def index(request):
 ```
 
 And that's it.
+
+## Extending a base layout
+
+In the temlates folder, create `base.html` file
+
+```
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>My Title</title>
+	</head>
+	<body>
+		{% block content %} {% endblock %}
+	</body>
+</html>
+
+```
+
+Back in the `index.html` file
+
+```
+{% extends 'base.html' %}
+
+{% block content%}
+	<h1>Home page</h1>
+{% endblock %}
+
+```
+
+## Adding static files
+
+First, create a static folder and paste/create your static files(i.e images, css, js)
+Edit `setting.py` file
+
+```
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+```
+
+Save and type this in the terminal
+
+```
+python manage.py collectstatic
+```
