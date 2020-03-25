@@ -258,7 +258,7 @@ ul{
 	height: auto;
 }
 .intro{
-	background-image: url(img/backgrounds/bg4.jpg);
+	background-image: url(/static/img/backgrounds/bg4.jpg);
 	background-size: cover;
 	height: auto;
 	min-height: 10vh;
@@ -277,7 +277,7 @@ ul{
 	height: auto;
 }
 footer{
-	background-image: url(img/backgrounds/bg4.jpg);
+	background-image: url(/static/img/backgrounds/bg4.jpg);
 	position: relative;
 	width: 100%;
 	background-size: cover;
@@ -322,6 +322,9 @@ footer{
 .small-text{
 	font-family: 'Baloo 2', cursive;
 	font-size: calc(60% + 10px);
+}
+.active{
+	color: white !important;
 }
 .uppercase{
 	text-transform: uppercase;

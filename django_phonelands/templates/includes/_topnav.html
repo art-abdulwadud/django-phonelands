@@ -1,0 +1,27 @@
+{% load static %}
+<div class="top-nav three-secs">
+	<div class="logo-wrapper center animated fadeInDown">
+		<a href="index.html" class="link">
+			<img src="{% static 'img/logo.png' %}" alt="" class="logo" height="60" width="150" />
+		</a>
+	</div>
+	<div class="search-box mt-2 animated jackInTheBox one">
+		<form action="" class="search-form">
+			<input type="text" name="search" class="small-text" placeholder="Search" id="search" autocomplete="off" />
+			<button type="submit" class="search-btn link">
+				<i class="large material-icons">search</i>
+			</button>
+		</form>
+	</div>
+	<div class="account pt-2 small-text mt-2 mb-1 animated zoomIn">
+		<img src="{% static 'img/icons/user.png' %}" alt="user" class="img-fluid mr-2" height="30" width="30" />
+		<a href="signup.html" class="link text-white">Sign up</a>
+		or
+		<a href="login.html" class="link text-white">Login</a>
+
+		<a href="cart.html" class="link black">
+			<img src="{% static 'img/icons/cart.png' %}" alt="user" class="img-fluid ml-2" height="30" width="30" />
+			(<span class="cart-items">3</span>)
+		</a>
+	</div>
+</div>

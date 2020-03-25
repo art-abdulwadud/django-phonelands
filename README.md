@@ -38,9 +38,26 @@ python manage.py runserver
 Create an app within our django project
 
 ```
-python manage.py startapp name_of_app
+python manage.py startapp appname
 ```
 
+Note: Always remember to add any app you create to your `settings.py` file.
+
+```
+# Application definition
+
+INSTALLED_APPS = [
+    'appname.apps.AppnameConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+Note: `AppnameConfig` is the module name given to the app in `apps.py` file which is within the app folder.
 Open the new folder created for the app and add a method to the `views.py` file.
 
 ```
@@ -151,4 +168,72 @@ Save and type this in the terminal
 
 ```
 python manage.py collectstatic
+```
+
+In `base.html`, load your static files
+
+```
+{load static}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Base</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+
+</body>
+</html>
+```
+
+same thing for images
+
+```
+<img src="{% static 'logo.jpg' %}" alt="logo">
+
+<img src="{% static 'img/about.jpg' %}" alt="about">
+```
+
+## Linking to route
+
+This is pretty straight forward. In our app `urls.py` file, we gave each path a name and that's the name we use to link to e.g
+
+```
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+	path('', views.index, name='index')
+]
+```
+
+```
+<a href="{% url 'index' %}"></a>
+```
+
+## Using conditions to interchange classes
+
+For example, let's say you want to give the class `active` to a html element depending on the page you are on, you can use an if statement within the `class` attribute. e.g
+
+```
+	<ul class="navlist" id="nav">
+		<li class="navitem">
+			<a
+				href="{% url 'index' %}"
+				class="navlink link medium-text
+			{% if '/' == request.path %} active {% endif %}"
+				>Home</a
+			>
+		</li>
+		<li class="navitem">
+			<a
+				href="{% url 'about' %}"
+				class="navlink link medium-text
+			{% if '/about' == request.path %} active {% endif %}"
+				>About</a
+			>
+		</li>
+	</ul>
 ```

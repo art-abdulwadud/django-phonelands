@@ -1,3 +1,70 @@
-{% extends 'base.html' %} {% block content%}
-<h1>About Page</h1>
+{% extends 'base.html' %} {% load static %} {% block content%}
+<section class="intro-sec">
+	<div class="two-secs first">
+		<div class="overflow-hidden img-sec p-3 center animated fadeInLeft">
+			<img src="{% static 'img/team/amazon.png' %}" alt="user" class="ml-2 intro-img" />
+		</div>
+		<div class="intro-text pl-2">
+			<p class="sub-heading text-white animated fadeInUp">top retailers</p>
+			<h1 class="heading animated fadeInUp one">Amazon</h1>
+			<p class="small-text animated fadeInUp two p">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic possimus vitae maxime vero iste
+				consequatur quaerat iure, sit similique cupiditate rerum, ea tempore consequuntur nostrum facere porro
+				magni dolorum amet!
+			</p>
+			<div class="two-secs">
+				<div class="price animated rotateInDownLeft four heading">
+					Company
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-none second">
+		<div class="overflow-hidden img-sec p-3 center animated fadeInLeft">
+			<img src="{% static 'img/team/member1.jpeg' %}" alt="user" class="ml-2 intro-img" />
+		</div>
+		<div class="intro-text pl-2">
+			<p class="sub-heading text-white animated fadeInUp">top retailers</p>
+			<h1 class="heading animated fadeInUp one">Abdulwadud</h1>
+			<p class="small-text animated fadeInUp two p">
+				A web developer currently trianing in HTML, CSS and JavaScript. Also working with JavaScript libraries,
+				including jquery and react, and Pyhton frameworks, including Django and Flask.
+			</p>
+			<div class="two-secs">
+				<div class="price animated rotateInDownLeft four heading">
+					Entrepreneur
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slide-btns text-center">
+		<span class="prev cursor" id="prev"><i class="material-icons">chevron_left</i></span>
+		<span class="slide-one cursor"><i class="material-icons">brightness_1</i></span>
+		<span class="slide-two cursor"><i class="material-icons">brightness_1</i></span>
+		<span class="next cursor" id="next"><i class="material-icons">chevron_right</i></span>
+	</div>
+</section>
+<section class="about">
+	<div class="intro text-center">
+		<h1 class="heading animated fadeInLeft" id="about">About Us</h1>
+	</div>
+	<div class="text-center pt-5 pl-2 pr-2 pb-5">
+		<p class="small-text mb-0 pb-0 animated fadeInDown one">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quos et, perspiciatis. Explicabo numquam
+			aliquam vero dolores error minus ratione, laboriosam corporis rem accusamus dicta. Officia ipsa sint quia
+			labore earum fuga, iusto voluptates assumenda at eum obcaecati quam, cumque dicta sequi quibusdam saepe.
+			Aliquid perferendis, debitis deleniti. Qui nobis, incidunt tempora deserunt voluptatum fuga molestiae illo
+			esse veniam at nesciunt natus facere, quam optio provident consectetur reiciendis. Magnam ab animi
+			doloremque fuga modi exercitationem, libero sit aliquid repellendus reiciendis nobis aliquam possimus,
+			praesentium corrupti odit excepturi, velit quas earum. Inventore itaque aperiam at totam eligendi hic nulla
+			praesentium laudantium, cum deleniti doloremque voluptate quos vitae perferendis quasi obcaecati harum
+			beatae aut maiores veniam doloribus dicta. Ratione reiciendis, deserunt, veritatis adipisci temporibus dicta
+			aut, necessitatibus illo minus voluptatibus, iste at dignissimos. Dolor ducimus culpa natus, incidunt alias
+			ullam reiciendis a sit obcaecati dolore dolorum repudiandae beatae corrupti iusto fugiat, explicabo.
+		</p>
+	</div>
+</section>
+<section class="product-list text-center pb-3">
+	{% include 'includes/_productspreview.html' %}
+</section>
 {% endblock %}

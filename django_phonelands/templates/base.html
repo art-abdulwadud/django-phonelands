@@ -1,11 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<!-- Personal CSS -->
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+		<!-- Icon near the title -->
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}" />
 		<title>Phonelands</title>
+		<link href="{% static 'css/aos.css' %}" rel="stylesheet" />
+		<link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Changa&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet" />
+		<!-- Icons -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+		<!-- Lightbox -->
+		<link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}" />
 	</head>
 	<body>
-		<div>base content</div>
-		{% block content %} {% endblock %}
+		<header>
+			{% include 'includes/_topnav.html' %} {% include 'includes/_navbar.html' %}
+		</header>
+		{% block content %} {% endblock %} {% include 'includes/_footer.html' %}
+		<script src="{% static 'js/aos.js' %}"></script>
+		<script>
+			AOS.init();
+		</script>
+		<script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+		<script src="{% static 'js/animations.js' %}"></script>
+		<script src="{% static 'js/toggle.js' %}"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="{% static 'jquery/jquery-3.3.1.slim.min.js' %}"></script>
+		<script src="{% static 'popper/popper.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	</body>
 </html>

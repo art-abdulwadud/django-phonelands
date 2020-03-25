@@ -1,0 +1,33 @@
+{% load static %}
+<nav>
+	<div class="text-right p-2 small-text cursor toggler">
+		Menu
+		<img src="{% static 'img/icons/menu.png' %}" alt="user" class="img-fluid ml-2" height="30" width="30" />
+	</div>
+	<ul class="navlist" id="nav">
+		<li class="navitem">
+			<a
+				href="{% url 'index' %}"
+				class="navlink link medium-text 
+			{% if '/' == request.path %} active {% endif %}"
+				>Home</a
+			>
+		</li>
+		<li class="navitem">
+			<a
+				href="{% url 'about' %}"
+				class="navlink link medium-text 
+			{% if '/about' == request.path %} active {% endif %}"
+				>About</a
+			>
+		</li>
+		<li class="navitem blue-ish cursor droplink medium-text">
+			Phones
+			<span class="more"><i class="material-icons">expand_more</i></span>
+			<div class="nav-dropdown small-text animated shake" id="nav-dropdown-wrapper">
+				<a class="dd-item link black" href="#recent">Recently Added</a>
+				<a class="dd-item link black" href="phones.html#products">All Products</a>
+			</div>
+		</li>
+	</ul>
+</nav>
