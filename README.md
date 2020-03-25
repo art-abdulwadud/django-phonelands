@@ -301,7 +301,7 @@ Add server
 
 Fill in the details of the user you just created
 
-![pgadmin3](https://user-images.githubusercontent.com/60689731/77548951-49d9ad00-6ec0-11ea-914d-b3e85ddbe562.png)
+![pgadmin3](https://user-images.githubusercontent.com/60689731/77550130-c4ef9300-6ec1-11ea-9f56-9776da98d772.png)
 
 You should now be able to see the database you created.
 
