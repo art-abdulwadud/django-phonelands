@@ -299,7 +299,7 @@ Add server
 
 ![pgadmin2](https://user-images.githubusercontent.com/60689731/77548505-b1dbc380-6ebf-11ea-93fb-1a570980cf61.png)
 
-Fill in the details of the user and database you just created
+Fill in the details of the user you just created
 
 ![pgadmin3](https://user-images.githubusercontent.com/60689731/77548951-49d9ad00-6ec0-11ea-914d-b3e85ddbe562.png)
 
