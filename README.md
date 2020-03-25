@@ -222,16 +222,14 @@ For example, let's say you want to give the class `active` to a html element dep
 		<li class="navitem">
 			<a
 				href="{% url 'index' %}"
-				class="navlink link medium-text
-			{% if '/' == request.path %} active {% endif %}"
+				class="navlink link medium-text {% if '/' == request.path %} active {% endif %}"
 				>Home</a
 			>
 		</li>
 		<li class="navitem">
 			<a
 				href="{% url 'about' %}"
-				class="navlink link medium-text
-			{% if '/about' == request.path %} active {% endif %}"
+				class="navlink link medium-text {% if '/about' == request.path %} active {% endif %}"
 				>About</a
 			>
 		</li>
