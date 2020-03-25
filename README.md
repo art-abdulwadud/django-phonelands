@@ -218,20 +218,20 @@ urlpatterns = [
 For example, let's say you want to give the class `active` to a html element depending on the page you are on, you can use an if statement within the `class` attribute. e.g
 
 ```
-	<ul class="navlist" id="nav">
-		<li class="navitem">
-			<a
-				href="{% url 'index' %}"
-				class="navlink link medium-text {% if '/' == request.path %} active {% endif %}"
-				>Home</a
-			>
-		</li>
-		<li class="navitem">
-			<a
-				href="{% url 'about' %}"
-				class="navlink link medium-text {% if '/about' == request.path %} active {% endif %}"
-				>About</a
-			>
-		</li>
-	</ul>
+<ul class="navlist" id="nav">
+	<li class="navitem">
+		<a
+			href="{% url 'index' %}"
+			class="navlink link medium-text {% if '/' == request.path %} active {% endif %}"
+			>Home</a
+		>
+	</li>
+	<li class="navitem">
+		<a
+			href="{% url 'about' %}"
+			class="navlink link medium-text {% if '/about' == request.path %} active {% endif %}"
+			>About</a
+		>
+	</li>
+</ul>
 ```
