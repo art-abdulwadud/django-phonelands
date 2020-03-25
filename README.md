@@ -291,7 +291,7 @@ GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myusername;
 
 ## Setting up postgres in Django
 
-Note: Install this package if it's not already installed. You cna find out if it's installed by typing `pip list`
+Note: Install this package if it's not already installed. You can find out if it's installed by typing `pip list`
 
 ```
 pip install psycopg2-binary
