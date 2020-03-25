@@ -195,8 +195,7 @@ same thing for images
 <img src="{% static 'img/about.jpg' %}" alt="about">
 ```
 
-Finally, if you are going to push project to github, you should go to https://www.gitignore.io/
-On the website, search for django and download that file to your project folder. Add the names of folders that you want to ingore when pushing(i.e venv, static). This will help you not to push two static folders to github and instead push only one of them.
+Finally, if you are going to push project to github, you should go to [Gitignore](https://www.gitignore.io/), search for django and download that file to your project folder. Add the names of folders that you want to ingore when pushing(i.e venv, static). This will help you not to push two static folders to github and instead push only one of them.
 
 ## Linking to route
 
