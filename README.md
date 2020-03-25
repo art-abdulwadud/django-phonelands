@@ -270,3 +270,53 @@ To quit postgres shell, type
 ```
 \q
 ```
+
+Preferably, you can create a new user and create databases refenced to it
+
+```
+CREATE USER myusername WITH PASSWORD 'mypassword';
+```
+
+And then create database
+
+```
+CREATE DATABASE mydatabase OWNER myusername;
+```
+
+Grant all privileges
+
+```
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myusername;
+```
+
+## Setting up postgres in Django
+
+Note: Install this package if it's not already installed. You cna find out if it's installed by typing `pip list`
+
+```
+pip install psycopg2-binary
+```
+
+Edit `settings.py` file in the `DATABASES` section
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',
+        'USER': 'myusername',
+        'PASSWORD': 'mypassword',
+        'HOST': 'localhost'
+    }
+}
+```
+
+So far, whenever you run the server, there's always an error message warning you that you have unapplied migrations right?. To fix that, stop the server and run this
+
+```
+python manage.py migrate
+```
+
+Migrations in Django generate changes you make to your models (adding a field, deleting a model, etc.) into your database schema.
+
+
