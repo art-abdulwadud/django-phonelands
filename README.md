@@ -1,6 +1,6 @@
-# Phonelands
+# Creating a fullstack webapp with Django Framework
 
-A fullstack eCommerce webapp for selling cell phones created using Django framework.
+A guide for creating a fullstack webapp using Django framework and PostreSQL.
 
 ## Getting Started
 
