@@ -291,9 +291,21 @@ GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myusername;
 
 ## Setting up pgAdmin III
 
-Go to `Ubuntu Software` app and search for pgadmin
+Go to `Ubuntu Software` app and search for pgadmin and install it.
 
 ![pgadmin1](https://user-images.githubusercontent.com/60689731/77547272-0a11c600-6ebe-11ea-92fa-e7a7e595e1c2.png)
+
+Add server
+
+![pgadmin2](https://user-images.githubusercontent.com/60689731/77548505-b1dbc380-6ebf-11ea-93fb-1a570980cf61.png)
+
+Fill in the details of the user and database you just created
+
+![pgadmin3](https://user-images.githubusercontent.com/60689731/77548951-49d9ad00-6ec0-11ea-914d-b3e85ddbe562.png)
+
+You should now be able to see the database you created.
+
+![pgadmin4](https://user-images.githubusercontent.com/60689731/77549469-edc35880-6ec0-11ea-8d28-c9e5d8999d48.png)
 
 ## Setting up postgres in Django
 
