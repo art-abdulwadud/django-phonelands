@@ -293,7 +293,7 @@ GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myusername;
 
 Go to `Ubuntu Software` app and search for pgadmin
 
-![Alt text](/screensots/pgadmin1.png?raw=true 'pgAdmin search')
+![pgadmin1](https://user-images.githubusercontent.com/60689731/77547272-0a11c600-6ebe-11ea-92fa-e7a7e595e1c2.png)
 
 ## Setting up postgres in Django
 
