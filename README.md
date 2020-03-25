@@ -289,6 +289,12 @@ Grant all privileges
 GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myusername;
 ```
 
+## Setting up pgAdmin III
+
+Go to `Ubuntu Software` app and search for pgadmin
+
+![Alt text](/screensots/pgadmin1.png?raw=true 'pgAdmin search')
+
 ## Setting up postgres in Django
 
 Note: Install this package if it's not already installed. You can find out if it's installed by typing `pip list`
@@ -311,12 +317,10 @@ DATABASES = {
 }
 ```
 
-So far, whenever you run the server, there's always an error message warning you that you have unapplied migrations right?. To fix that, stop the server and run this
+So far, whenever you run the server, there's always an error message warning you that you have unapplied migrations right?. To fix that, quit the server and run this
 
 ```
 python manage.py migrate
 ```
 
 Migrations in Django generate changes you make to your models (adding a field, deleting a model, etc.) into your database schema.
-
-
