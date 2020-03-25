@@ -235,3 +235,38 @@ For example, let's say you want to give the class `active` to a html element dep
 	</li>
 </ul>
 ```
+
+## Getting started with Posgresql Database on Linux(Ubuntu)
+
+First, install through terminal
+
+```
+sudo apt-get install postgresql postgresql-contrib
+```
+
+Then type
+
+```
+sudo -u postgres psql
+```
+
+and you'll enter the postgres shell. Now create a new user
+
+```
+\password newuser
+```
+
+As soon as you enter this, it will prompt you to create a new password for this new user.
+Create a database and reference it this user
+
+```
+CREATE DATABASE newdb OWNER newuser;
+```
+
+Note: Remember to end this statement with a semi-colon
+
+To quit postgres shell, type
+
+```
+\q
+```

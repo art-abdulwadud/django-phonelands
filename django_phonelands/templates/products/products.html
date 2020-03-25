@@ -1,1 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block content %} {% endblock %}
+{% extends 'base.html' %} {% load static %} {% block content %} {% include 'includes/_products.html' %}
+
+<section class="recent-items">
+	{% include 'includes/_recentproducts.html' %}
+</section>
+
+{% endblock %}

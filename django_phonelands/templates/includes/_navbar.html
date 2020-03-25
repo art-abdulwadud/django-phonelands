@@ -21,12 +21,15 @@
 				>About</a
 			>
 		</li>
-		<li class="navitem blue-ish cursor droplink medium-text">
+		<li
+			class="navitem blue-ish cursor droplink medium-text 
+		{% if '/products/' == request.path %} active {% endif %}"
+		>
 			Phones
 			<span class="more"><i class="material-icons">expand_more</i></span>
 			<div class="nav-dropdown small-text animated shake" id="nav-dropdown-wrapper">
-				<a class="dd-item link black" href="#recent">Recently Added</a>
-				<a class="dd-item link black" href="phones.html#products">All Products</a>
+				<a class="dd-item link black" href="/products#recent">Recently Added</a>
+				<a class="dd-item link black" href="{% url 'products' %}">All Products</a>
 			</div>
 		</li>
 	</ul>
