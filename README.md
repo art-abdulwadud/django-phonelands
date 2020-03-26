@@ -43,7 +43,7 @@ python manage.py startapp appname
 
 Note: Always remember to add any app you create to your `settings.py` file.
 
-```
+```python
 # Application definition
 
 INSTALLED_APPS = [
@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 Note: `AppnameConfig` is the module name given to the app in `apps.py` file which is within the app folder.
 Open the new folder created for the app and add a method to the `views.py` file.
 
-```
+```python
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -70,7 +70,7 @@ def index(request):
 
 Create a `urls.py` file and create a route for the view method we just created
 
-```
+```python
 from django.urls import path
 
 from . import views
@@ -82,7 +82,7 @@ urlpatterns = [
 
 Back to the main `ulrs.py` file, which is in the same directory as `setting.py`, and edit it
 
-```
+```python
 from django.contrib import admin
 from django.urls import path, include
 
@@ -98,7 +98,7 @@ Note: `include` has to be imported
 
 Go to `setting.py` and in the `TEMPLATES`, edit `DIRS`
 
-```
+```python
 'DIRS': [os.path.join(BASE_DIR, 'templates')]
 ```
 
@@ -111,7 +111,7 @@ Now create the templates folder and add `index.html` file.
 
 Then edit `views.py` file
 
-```
+```python
 from django.shortcuts import render
 
 def index(request):
@@ -124,7 +124,7 @@ And that's it.
 
 In the temlates folder, create `base.html` file
 
-```
+```python
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -140,7 +140,7 @@ In the temlates folder, create `base.html` file
 
 Back in the `index.html` file
 
-```
+```python
 {% extends 'base.html' %}
 
 {% block content%}
@@ -154,7 +154,7 @@ Back in the `index.html` file
 First, create a static folder and paste/create your static files(i.e images, css, js)
 Edit `setting.py` file
 
-```
+```python
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -172,7 +172,7 @@ python manage.py collectstatic
 
 In `base.html`, load your static files
 
-```
+```python
 {load static}
 <!DOCTYPE html>
 <html lang="en">
@@ -189,7 +189,7 @@ In `base.html`, load your static files
 
 same thing for images
 
-```
+```python
 <img src="{% static 'logo.jpg' %}" alt="logo">
 
 <img src="{% static 'img/about.jpg' %}" alt="about">
@@ -201,7 +201,7 @@ Finally, if you are going to push project to github, you should go to [Gitignore
 
 This is pretty straight forward. In our app `urls.py` file, we gave each path a name and that's the name we use to link to e.g
 
-```
+```python
 from django.urls import path
 
 from . import views
@@ -211,7 +211,7 @@ urlpatterns = [
 ]
 ```
 
-```
+```python
 <a href="{% url 'index' %}"></a>
 ```
 
@@ -319,7 +319,7 @@ pip install psycopg2-binary
 
 Edit `settings.py` file in the `DATABASES` section
 
-```
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -344,7 +344,7 @@ Migrations in Django generate changes you make to your models (adding a field, d
 The word `schema` here basically means a skeleton structure that represents the logical view of the entire database. Whenever you create an app, within that app's folder is a `models.py` file and that's where our database schema for that app should be created.
 e.g
 
-```
+```python
 from django.db import models
 from datetime import datetime
 from django.contrib.postgres.fields import ArrayField
@@ -368,7 +368,7 @@ class Product (models.Model):
 
 If you want to import a field from another model, it's pretty easy. Let's import
 
-```
+```python
 from django.db import models
 from retailer.models import Retailer
 from datetime import datetime
@@ -380,7 +380,7 @@ class Product (models.Model):
 	screen_size = models.CharField(max_length=150)
 	operating_system = models.CharField(max_length=150)
 	model_number = models.CharField(max_length=150)
-	price = models.DecimalField(decimal_places=2)
+	price = models.FloatField()
 	batteries = models.CharField(max_length=255)
 	main_photo = models.ImageField(upload_to='images/%Y/%m/%d')
 	photos = ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
@@ -416,6 +416,29 @@ python manage.py migrate
 
 This will now add this table/tables to the database.
 
+To set up the folder where the images are to be uploaded, set up root and url in `settings.py` file
+
+```python
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+```
+
+And then edit `urls.py` file in the same folder as `settings.py` file
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+	path('', include('pages.urls')),
+	path('products/', include('allproducts.urls')),
+    path('admin/', admin.site.urls),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+```
+
 ## Setting up Admin
 
 In the url section, type admin
@@ -443,7 +466,7 @@ After loggin in, you'll see something like this
 To register your app/s, edit `admin.py` file in the app folder.
 e.g Assuming the name of the model created in `model.py` file in the folder of that app is `Product`
 
-```
+```python
 from django.contrib import admin
 from .models import Product
 
@@ -454,3 +477,14 @@ admin.site.register(Product)
 Back at the admin page, refresh and you should see your app/s
 
 ![site administration](https://user-images.githubusercontent.com/60689731/77647675-e3b06100-6f77-11ea-85bf-56f599a0eb7b.png)
+
+## Adding Data
+
+In this project, i have created products and retailers models. Now am going add data to the database through
+`admin` page. Click the registered apps and add new data. I started with the retailer since every product must belong to a retailer.
+
+![adding retailer(1)](https://user-images.githubusercontent.com/60689731/77662161-9094d900-6f8c-11ea-8886-91226adf3fca.png)
+
+When done filling the details, click save.
+
+![added retailer](https://user-images.githubusercontent.com/60689731/77662461-ef5a5280-6f8c-11ea-8f83-39bf0b496116.png)
