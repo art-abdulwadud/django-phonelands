@@ -415,3 +415,42 @@ python manage.py migrate
 ```
 
 This will now add this table/tables to the database.
+
+## Setting up Admin
+
+In the url section, type admin
+
+![url](https://user-images.githubusercontent.com/60689731/77644793-b01f0800-6f72-11ea-9e68-2684621d712b.png)
+
+you'll be directed to the admin login page
+
+![url](https://user-images.githubusercontent.com/60689731/77644793-b01f0800-6f72-11ea-9e68-2684621d712b.png)
+
+To log in, first create a super user using the terminal
+
+```
+python manage.py createsuperuser
+```
+
+Now use your new username and password to login back at the admin page
+
+## Register your apps
+
+After loggin in, you'll see something like this
+
+![site administration(1)](https://user-images.githubusercontent.com/60689731/77647887-44d83480-6f78-11ea-8f1f-19021d3e684c.png)
+
+To register your app/s, edit `admin.py` file in the app folder.
+e.g Assuming the name of the model created in `model.py` file in the folder of that app is `Product`
+
+```
+from django.contrib import admin
+from .models import Product
+
+admin.site.register(Product)
+
+```
+
+Back at the admin page, refresh and you should see you app/s
+
+![site administration](https://user-images.githubusercontent.com/60689731/77647675-e3b06100-6f77-11ea-85bf-56f599a0eb7b.png)

@@ -3,8 +3,8 @@ from datetime import datetime
 
 class Retailer(models.Model):
 	name = models.CharField(max_length=255)
-	category_choices = [('enterprenuer', 'organization')]
-	category = models.CharField(max_length=20,choices=category_choices,default='enterprenuer')
+	category_choices = [('org', 'organization'), ('ent', 'enterprenuer')]
+	category = models.CharField(max_length=20,choices=category_choices,default='organization')
 	top_retailer = models.BooleanField(default=False)
 	description = models.TextField(blank=True)
 	email = models.CharField(max_length=60)
