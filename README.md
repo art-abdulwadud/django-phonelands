@@ -424,7 +424,7 @@ In the url section, type admin
 
 you'll be directed to the admin login page
 
-![url](https://user-images.githubusercontent.com/60689731/77644793-b01f0800-6f72-11ea-9e68-2684621d712b.png)
+![admin login](https://user-images.githubusercontent.com/60689731/77645065-291e5f80-6f73-11ea-9359-2e770099ea20.png)
 
 To log in, first create a super user using the terminal
 
@@ -451,6 +451,6 @@ admin.site.register(Product)
 
 ```
 
-Back at the admin page, refresh and you should see you app/s
+Back at the admin page, refresh and you should see your app/s
 
 ![site administration](https://user-images.githubusercontent.com/60689731/77647675-e3b06100-6f77-11ea-85bf-56f599a0eb7b.png)
