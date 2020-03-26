@@ -331,10 +331,64 @@ DATABASES = {
 }
 ```
 
-So far, whenever you run the server, there's always an error message warning you that you have unapplied migrations right?. To fix that, quit the server and run this
+So far, whenever you run the server, there's always an error message warning you that you have unapplied migrations right? To fix that, quit the server and run this
 
 ```
 python manage.py migrate
 ```
 
 Migrations in Django generate changes you make to your models (adding a field, deleting a model, etc.) into your database schema.
+
+## Setting up schemas
+
+The word `schema` here basically means a skeleton structure that represents the logical view of the entire database. Whenever you create an app, within that app's folder is a `models.py` file and that's where our database schema for that app should be created.
+e.g
+
+```
+from django.db import models
+from datetime import datetime
+
+class Product (models.Model):
+	title = models.CharField(max_length=255)
+	screen_size = models.CharField(max_length=150)
+	operating_system = models.CharField(max_length=150)
+	model_number = models.CharField(max_length=150)
+	price = models.DecimalField(decimal_places=2)
+	batteries = models.CharField(max_length=255)
+	main_photo = models.ImageField(upload_to='images/%Y/%m/%d')
+	photos = models.ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
+	description = models.TextField(blank=True)
+	offer = models.BooleanField(default=False)
+	date_uploaded = models.DateTimeField(default=datetime.now, blank=True)
+
+	def __str__(self):
+		return self.title
+```
+
+If you want to import a field from another model, it's pretty easy. Let's import
+
+```
+from django.db import models
+from retailer.models import Retailer
+from datetime import datetime
+
+
+class Product (models.Model):
+	retailer = models.ForeignKey(Retailer, on_delete=models.DO_NOTHING)
+	title = models.CharField(max_length=255)
+	screen_size = models.CharField(max_length=150)
+	operating_system = models.CharField(max_length=150)
+	model_number = models.CharField(max_length=150)
+	price = models.DecimalField(decimal_places=2)
+	batteries = models.CharField(max_length=255)
+	main_photo = models.ImageField(upload_to='images/%Y/%m/%d')
+	photos = models.ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
+	description = models.TextField(blank=True)
+	offer = models.BooleanField(default=False)
+	date_uploaded = models.DateTimeField(default=datetime.now, blank=True)
+
+	def __str__(self):
+		return self.title
+```
+
+Note: Here, we've specified that if the `retailer` for this `product` is deleted, it should not delete the product and instead do nothing. [But there a few more options you can specify with `on_delete`](https://docs.djangoproject.com/en/3.0/ref/models/fields/#django.db.models.ForeignKey.on_delete)
