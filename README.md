@@ -347,6 +347,7 @@ e.g
 ```
 from django.db import models
 from datetime import datetime
+from django.contrib.postgres.fields import ArrayField
 
 class Product (models.Model):
 	title = models.CharField(max_length=255)
@@ -356,7 +357,7 @@ class Product (models.Model):
 	price = models.DecimalField(decimal_places=2)
 	batteries = models.CharField(max_length=255)
 	main_photo = models.ImageField(upload_to='images/%Y/%m/%d')
-	photos = models.ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
+	photos = ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
 	description = models.TextField(blank=True)
 	offer = models.BooleanField(default=False)
 	date_uploaded = models.DateTimeField(default=datetime.now, blank=True)
@@ -371,7 +372,7 @@ If you want to import a field from another model, it's pretty easy. Let's import
 from django.db import models
 from retailer.models import Retailer
 from datetime import datetime
-
+from django.contrib.postgres.fields import ArrayField
 
 class Product (models.Model):
 	retailer = models.ForeignKey(Retailer, on_delete=models.DO_NOTHING)
@@ -382,7 +383,7 @@ class Product (models.Model):
 	price = models.DecimalField(decimal_places=2)
 	batteries = models.CharField(max_length=255)
 	main_photo = models.ImageField(upload_to='images/%Y/%m/%d')
-	photos = models.ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
+	photos = ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
 	description = models.TextField(blank=True)
 	offer = models.BooleanField(default=False)
 	date_uploaded = models.DateTimeField(default=datetime.now, blank=True)
@@ -391,4 +392,26 @@ class Product (models.Model):
 		return self.title
 ```
 
-Note: Here, we've specified that if the `retailer` for this `product` is deleted, it should not delete the product and instead do nothing. [But there a few more options you can specify with `on_delete`](https://docs.djangoproject.com/en/3.0/ref/models/fields/#django.db.models.ForeignKey.on_delete)
+Note: Here, we've specified that if the `retailer` for this `product` is deleted, it should not delete the product and instead do nothing. But there a few more options you can specify with `on_delete` [here](https://docs.djangoproject.com/en/3.0/ref/models/fields/#django.db.models.ForeignKey.on_delete)
+
+Note: The ArrayField has been import from `django.contrib.postgres.fields`
+
+After creating them, now make migrations
+
+```
+python manage.py makemigrations
+```
+
+Note: Before making migrations, if you have used `ImageField`, like in this case then you have to instal `Pillow` otherwise you'll get an error
+
+```
+pip install Pillow
+```
+
+After running `makemigrations`, a new file is created within the migrations folder in the app folder. Now that the migrations are ready, migrate
+
+```
+python manage.py migrate
+```
+
+This will now add this table/tables to the database.
