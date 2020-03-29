@@ -1,5 +1,11 @@
 {% extends 'admin/base.html' %} {% load static %} {% block branding %}
-<h1>
-	Whatever
-</h1>
+
+<div>
+	<img src="{% static 'img/logo.png' %}" alt="logo" class="logo" height="60" width="150" />
+</div>
+
+{% endblock %} {% block extrastyle %}
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
 {% endblock %}

@@ -1,0 +1,14 @@
+#header{
+	background: linear-gradient(#30c7ec, #16d9e3);
+}
+div.breadcrumbs{
+	background: rgba(0,0,0,0.8);
+}
+
+.module caption{
+	background: linear-gradient(#30c7ec, #16d9e3);
+}
+
+a.section:link, a.section:visited{
+	color: black;
+}

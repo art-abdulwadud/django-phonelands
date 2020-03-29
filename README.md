@@ -519,3 +519,11 @@ In the templates folder, create a folder named `admin`. Within it, create a file
 Now...
 
 ![navbar after](https://user-images.githubusercontent.com/60689731/77842456-040c3580-719b-11ea-8f2b-d070e0dc8a99.png)
+
+For adding custom css
+
+```
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/mystyles.css' %}" />
+{% endblock %}
+```
