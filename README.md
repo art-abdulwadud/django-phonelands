@@ -498,7 +498,7 @@ When done filling the details, click save.
 
 Now that the retailers are available, when adding a product, the list of retailers will automatically be generated.
 
-## Customizing Admin Page Navbar
+## Customizing Admin Page
 
 Currently, the navbar is not customized
 
@@ -527,3 +527,23 @@ For adding custom css
 <link rel="stylesheet" href="{% static 'css/mystyles.css' %}" />
 {% endblock %}
 ```
+
+You can choose which fields appear for the data which is being displayed. Currently...
+
+![current table](https://user-images.githubusercontent.com/60689731/77842974-302ab500-71a1-11ea-91f4-c5ebea7f1c27.png)
+
+Open `admin.py` file and add...
+
+```
+from django.contrib import admin
+from .models import Product
+
+class ProductAdmin(admin.ModelAdmin):
+	list_display = ('id', 'title', 'retailer', 'price', 'date_uploaded')
+
+admin.site.register(Product, ProductAdmin)
+```
+
+In `list_display`, I just selected all the fields I want to see. After I save this, I get...
+
+![customized table](https://user-images.githubusercontent.com/60689731/77843065-176ecf00-71a2-11ea-8f17-c955193e79ce.png)
