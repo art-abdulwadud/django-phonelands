@@ -19,13 +19,27 @@
 		{% endfor %}
 	</div>
 	<div class="product-page text-center">
+		{% if products.has_other_pages %}
 		<ul class="product-page-list">
-			<li class="product-page-items prev-page"><i class="material-icons">chevron_left</i></li>
-			<li class="product-page-items active-page">1</li>
-			<li class="product-page-items">2</li>
-			<li class="product-page-items">3</li>
-			<li class="product-page-items next-page"><i class="material-icons">chevron_right</i></li>
+			{% if products.has_previous %}
+			<li class="product-page-items prev-page">
+				<a href="?page={{products.previous_page_number}}" class="link"
+					><i class="material-icons">chevron_left</i></a
+				>
+			</li>
+			{% endif %} {% for page_index in products.paginator.page_range %} {% if products.number == page_index %}
+			<li class="product-page-items active-page"><a class="link">{{ page_index }}</a></li>
+			{% else %}
+			<li class="product-page-items"><a href="?page={{ page_index }}" class="link">{{ page_index }}</a></li>
+			{% endif %} {% endfor %} {% if products.has_next %}
+			<li class="product-page-items prev-page">
+				<a href="?page={{products.next_page_number}}" class="link"
+					><i class="material-icons">chevron_right</i></a
+				>
+			</li>
+			{% endif %}
 		</ul>
+		{% endif %}
 	</div>
 	{% else %}
 	<span class="medium-text">0 Products</span>

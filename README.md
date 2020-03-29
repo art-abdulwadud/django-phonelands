@@ -613,3 +613,74 @@ In HTML
 	{% endif %}
 </section>
 ```
+
+## Pagination
+
+Paginator basically helps us to split the displaying data into different pages depending on how many they are.
+
+```python
+from django.shortcuts import render
+from django.core.paginator import Paginator
+from .models import Product
+
+def index(request):
+	products = Product.objects.all()
+
+	paginator = Paginator(products, 5)
+
+	page = request.GET.get('page')
+
+	paged_products = paginator.get_page(page)
+
+	context = {
+		'products': paged_products
+	}
+	return render(request, 'products/products.html', context)
+
+def product(request):
+	return render(request, 'products/product.html')
+```
+
+In this case, only 5 products will be displayed in every page.
+
+To link to the previous page, in my case,
+
+```xml
+{% if products.has_other_pages %}
+	<ul class="product-page-list">
+		{% if products.has_previous %}
+		<li class="product-page-items prev-page">
+			<a href="?page={{products.previous_page_number}}" class="link"
+				><i class="material-icons">chevron_left</i></a
+			>
+		</li>
+		{% endif %}
+	</ul>
+{% endif %}
+```
+
+To link to the next page,
+
+```xml
+{% if products.has_next %}
+	<li class="product-page-items prev-page">
+		<a href="?page={{products.next_page_number}}" class="link"
+			><i class="material-icons">chevron_right</i></a
+		>
+	</li>
+{% endif %}
+```
+
+To create links for each page that's available
+
+```xml
+{% for page_index in products.paginator.page_range %}
+	{% if products.number == page_index %}
+		<li class="product-page-items active-page"><a class="link">{{ page_index }}</a></li>
+	{% else %}
+		<li class="product-page-items"><a href="?page={{ page_index }}" class="link">{{ page_index }}</a></li>
+	{% endif %}
+{% endfor %}
+```
+
+Find more on pagination [here](https://docs.djangoproject.com/en/3.0/topics/pagination/)
