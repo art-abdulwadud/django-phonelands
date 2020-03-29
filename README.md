@@ -105,9 +105,7 @@ Go to `setting.py` and in the `TEMPLATES`, edit `DIRS`
 `os.path.join` here takes in two arguments, the location/directory of the templates folder and it's name.
 Now create the templates folder and add `index.html` file.
 
-```
 <h1>Home Page</h1>
-```
 
 Then edit `views.py` file
 
@@ -124,7 +122,6 @@ And that's it.
 
 In the temlates folder, create `base.html` file
 
-```
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -136,18 +133,14 @@ In the temlates folder, create `base.html` file
 	</body>
 </html>
 
-```
-
 Back in the `index.html` file
 
-```
 {% extends 'base.html' %}
 
 {% block content%}
-	<h1>Home page</h1>
-{% endblock %}
 
-```
+<h1>Home page</h1>
+{% endblock %}
 
 ## Adding static files
 
@@ -172,8 +165,8 @@ python manage.py collectstatic
 
 In `base.html`, load your static files
 
-```
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,14 +178,10 @@ In `base.html`, load your static files
 
 </body>
 </html>
-```
 
 same thing for images
 
-```
 <img src="{% static 'logo.jpg' %}" alt="logo">
-
-```
 
 Finally, if you are going to push project to github, you should go to [Gitignore](https://www.gitignore.io/), search for django and download that file to your project folder. Add the names of folders that you want to ingore when pushing(i.e venv, static). This will help you not to push two static folders to github and instead push only one of them.
 
@@ -218,15 +207,12 @@ urlpatterns = [
 ]
 ```
 
-```
 <a href="{% url 'index' %}"></a>
-```
 
 ## Using conditions to interchange classes
 
 For example, let's say you want to give the class `active` to a html element depending on the page you are on, you can use an if statement within the `class` attribute. e.g
 
-```
 <ul class="navlist" id="nav">
 	<li class="navitem">
 		<a
@@ -243,7 +229,6 @@ For example, let's say you want to give the class `active` to a html element dep
 		>
 	</li>
 </ul>
-```
 
 ## Getting started with Posgresql Database on Linux(Ubuntu)
 
@@ -506,15 +491,13 @@ Currently, the navbar is not customized
 
 In the templates folder, create a folder named `admin`. Within it, create a file named `base_site.html`
 
-```
 {% extend 'admin/base.html' %}
 {% load static %}
 
 {% block branding %}
-	<h1>Whatever</h1>
-{% endblock %}
 
-```
+<h1>Whatever</h1>
+{% endblock %}
 
 Now...
 
@@ -522,11 +505,10 @@ Now...
 
 For adding custom css
 
-```
 {% block extrastyle %}
+
 <link rel="stylesheet" href="{% static 'css/mystyles.css' %}" />
 {% endblock %}
-```
 
 You can choose which fields appear for the data which is being displayed. Currently...
 
@@ -534,7 +516,7 @@ You can choose which fields appear for the data which is being displayed. Curren
 
 Open `admin.py` file and add...
 
-```
+```python
 from django.contrib import admin
 from .models import Product
 
@@ -551,7 +533,7 @@ In `list_display`, I just selected all the fields I want to see. After I save th
 
 for filtering, use `list_filter`
 
-```
+```python
 from django.contrib import admin
 from .models import Product
 
@@ -566,3 +548,52 @@ admin.site.register(Product, ProductAdmin)
 There are more things you can do to customize your admin page [here](https://docs.djangoproject.com/en/3.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display)
 
 ## Fetch and display data
+
+In `view.py` file, import models from `models.py` file and store all its objects into a variable. Add that varibale to the context dictionary
+
+```python
+from django.shortcuts import render
+
+from .models import Product
+
+def index(request):
+	products = Product.objects.all()
+
+	context = {
+		'products': products
+	}
+	return render(request, 'products/products.html', context)
+
+def product(request):
+	return render(request, 'products/product.html')
+```
+
+In HTML
+
+<section class="product-list">
+	{% if products %}
+	<h1 class="heading center pt-3 pb-3" id="products">All Products</h1>
+	<div class="card-wrapper">
+		{% for product in products %}
+
+    	<div class="card">
+    		<div class="card-img-wrapper">
+    			<img src="img/phones/phone1/cover1.jpg" alt="" class="card-img" />
+    		</div>
+    		<div class="card-info ml-2 pb-2">
+    			<h1 class="medium-text">Samsung Galaxy Note9</h1>
+    			<p class="small-text">$349.99</p>
+    			<a href="single-phone.html" class="link btns btns-light medium-text">More</a>
+    		</div>
+    	</div>
+
+    	{% endfor %}
+
+   </div>
+   {% else %}
+
+<span class="medium-text">0 Products</span>
+
+{% endif %}
+
+</section>

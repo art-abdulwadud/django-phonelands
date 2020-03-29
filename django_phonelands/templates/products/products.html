@@ -1,7 +1,27 @@
-{% extends 'base.html' %} {% load static %} {% block content %} {% include 'includes/_products.html' %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<section class="recent-items">
-	{% include 'includes/_recentproducts.html' %}
+<section class="product-list">
+	{% if products %}
+	<h1 class="heading center pt-3 pb-3" id="products">All Products</h1>
+	<div class="card-wrapper">
+		{% for product in products %}
+
+		<div class="card">
+			<div class="card-img-wrapper">
+				<img src="img/phones/phone1/cover1.jpg" alt="" class="card-img" />
+			</div>
+			<div class="card-info ml-2 pb-2">
+				<h1 class="medium-text">Samsung Galaxy Note9</h1>
+				<p class="small-text">$349.99</p>
+				<a href="single-phone.html" class="link btns btns-light medium-text">More</a>
+			</div>
+		</div>
+
+		{% endfor %}
+	</div>
+	{% else %}
+	<span class="medium-text">0 Products</span>
+	{% endif %}
 </section>
 
 {% endblock %}
