@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-Note: `AppnameConfig` is the module name given to the app in `apps.py` file which is within the app folder.
+`AppnameConfig` is the module name given to the app in `apps.py` file which is within the app folder.
 Open the new folder created for the app and add a method to the `views.py` file.
 
 ```python
@@ -124,7 +124,7 @@ And that's it.
 
 In the temlates folder, create `base.html` file
 
-```python
+```
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -140,7 +140,7 @@ In the temlates folder, create `base.html` file
 
 Back in the `index.html` file
 
-```python
+```
 {% extends 'base.html' %}
 
 {% block content%}
@@ -172,8 +172,8 @@ python manage.py collectstatic
 
 In `base.html`, load your static files
 
-```python
-{load static}
+```
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,13 +189,20 @@ In `base.html`, load your static files
 
 same thing for images
 
-```python
+```
 <img src="{% static 'logo.jpg' %}" alt="logo">
 
-<img src="{% static 'img/about.jpg' %}" alt="about">
 ```
 
 Finally, if you are going to push project to github, you should go to [Gitignore](https://www.gitignore.io/), search for django and download that file to your project folder. Add the names of folders that you want to ingore when pushing(i.e venv, static). This will help you not to push two static folders to github and instead push only one of them.
+
+## Setting Background Image in CSS
+
+Change directory to '/static/'
+
+```
+background-image: url(/static/img/backgrounds/bg4.jpg);
+```
 
 ## Linking to route
 
@@ -211,7 +218,7 @@ urlpatterns = [
 ]
 ```
 
-```python
+```
 <a href="{% url 'index' %}"></a>
 ```
 
@@ -252,17 +259,17 @@ Then type
 sudo -u postgres psql
 ```
 
-and you'll enter the postgres shell. Now create a new user
+and you'll enter the postgres shell. Now create a new password
 
 ```
-\password newuser
+\password postgres
 ```
 
-As soon as you enter this, it will prompt you to create a new password for this new user.
-Create a database and reference it this user
+As soon as you enter this, it will prompt you to create a new password.
+Create a database
 
 ```
-CREATE DATABASE newdb OWNER newuser;
+CREATE DATABASE newdb;
 ```
 
 Note: Remember to end this statement with a semi-colon
@@ -357,7 +364,7 @@ class Product (models.Model):
 	price = models.DecimalField(decimal_places=2)
 	batteries = models.CharField(max_length=255)
 	main_photo = models.ImageField(upload_to='images/%Y/%m/%d')
-	photos = ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
+	arrays_if_any = ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
 	description = models.TextField(blank=True)
 	offer = models.BooleanField(default=False)
 	date_uploaded = models.DateTimeField(default=datetime.now, blank=True)
@@ -383,7 +390,7 @@ class Product (models.Model):
 	price = models.FloatField()
 	batteries = models.CharField(max_length=255)
 	main_photo = models.ImageField(upload_to='images/%Y/%m/%d')
-	photos = ArrayField(models.ImageField(upload_to='images/%Y/%m/%d'))
+	arrays_if_any = ArrayField(models.CharField(max_length=150))
 	description = models.TextField(blank=True)
 	offer = models.BooleanField(default=False)
 	date_uploaded = models.DateTimeField(default=datetime.now, blank=True)
@@ -392,7 +399,7 @@ class Product (models.Model):
 		return self.title
 ```
 
-Note: Here, we've specified that if the `retailer` for this `product` is deleted, it should not delete the product and instead do nothing. But there a few more options you can specify with `on_delete` [here](https://docs.djangoproject.com/en/3.0/ref/models/fields/#django.db.models.ForeignKey.on_delete)
+Note: Here, we've specified that if the `retailer` for this `product` is deleted, it should not delete the product and instead do nothing. But there are a few more options you can specify with `on_delete` [here](https://docs.djangoproject.com/en/3.0/ref/models/fields/#django.db.models.ForeignKey.on_delete)
 
 Note: The ArrayField has been import from `django.contrib.postgres.fields`
 
@@ -488,3 +495,27 @@ In this project, i have created products and retailers models. Now am going add 
 When done filling the details, click save.
 
 ![added retailer](https://user-images.githubusercontent.com/60689731/77662461-ef5a5280-6f8c-11ea-8f83-39bf0b496116.png)
+
+Now that the retailers are available, when adding a product, the list of retailers will automatically be generated.
+
+## Customizing Admin Page Navbar
+
+Currently, the navbar is not customized
+
+![now navbar](https://user-images.githubusercontent.com/60689731/77842380-0b7f0f00-719a-11ea-904e-df297189ac5b.png)
+
+In the templates folder create an a folder named `admin`. Within it, create a file named `base_site.html`
+
+```
+{% extend 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+	<h1>Whatever</h1>
+{% endblock %}
+
+```
+
+Now...
+
+![navbar after](https://user-images.githubusercontent.com/60689731/77842456-040c3580-719b-11ea-8f2b-d070e0dc8a99.png)
