@@ -540,6 +540,7 @@ from .models import Product
 
 class ProductAdmin(admin.ModelAdmin):
 	list_display = ('id', 'title', 'retailer', 'price', 'date_uploaded')
+	list_display_links = ('id', 'title')
 
 admin.site.register(Product, ProductAdmin)
 ```
@@ -547,3 +548,21 @@ admin.site.register(Product, ProductAdmin)
 In `list_display`, I just selected all the fields I want to see. After I save this, I get...
 
 ![customized table](https://user-images.githubusercontent.com/60689731/77843065-176ecf00-71a2-11ea-8f17-c955193e79ce.png)
+
+for filtering, use `list_filter`
+
+```
+from django.contrib import admin
+from .models import Product
+
+class ProductAdmin(admin.ModelAdmin):
+	list_display = ('id', 'title', 'retailer', 'price', 'date_uploaded')
+	list_display_links = ('id', 'title')
+	list_filter = ('retailer', 'date_uploaded')
+
+admin.site.register(Product, ProductAdmin)
+```
+
+There are more things you can do to customize your admin page [here](https://docs.djangoproject.com/en/3.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display)
+
+## Fetch and display data
