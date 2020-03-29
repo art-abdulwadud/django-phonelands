@@ -124,7 +124,7 @@ And that's it.
 
 In the temlates folder, create `base.html` file
 
-```
+```xml
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -140,7 +140,7 @@ In the temlates folder, create `base.html` file
 
 Back in the `index.html` file
 
-```
+```xml
 {% extends 'base.html' %}
 
 {% block content%}
@@ -172,7 +172,7 @@ python manage.py collectstatic
 
 In `base.html`, load your static files
 
-```
+```xml
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -189,7 +189,7 @@ In `base.html`, load your static files
 
 same thing for images
 
-```
+```xml
 <img src="{% static 'logo.jpg' %}" alt="logo">
 
 ```
@@ -226,7 +226,7 @@ urlpatterns = [
 
 For example, let's say you want to give the class `active` to a html element depending on the page you are on, you can use an if statement within the `class` attribute. e.g
 
-```
+```xml
 <ul class="navlist" id="nav">
 	<li class="navitem">
 		<a
@@ -506,7 +506,7 @@ Currently, the navbar is not customized
 
 In the templates folder, create a folder named `admin`. Within it, create a file named `base_site.html`
 
-```
+```xml
 {% extend 'admin/base.html' %}
 {% load static %}
 
@@ -588,7 +588,7 @@ def product(request):
 
 In HTML
 
-```
+```xml
 <section class="product-list">
 	{% if products %}
 	<h1 class="heading center pt-3 pb-3" id="products">All Products</h1>
@@ -597,12 +597,12 @@ In HTML
 
 		<div class="card">
 			<div class="card-img-wrapper">
-				<img src="img/phones/phone1/cover1.jpg" alt="" class="card-img" />
+				<img src="{{ product.main_pic.url }}" alt="" class="card-img" />
 			</div>
 			<div class="card-info ml-2 pb-2">
-				<h1 class="medium-text">Samsung Galaxy Note9</h1>
-				<p class="small-text">$349.99</p>
-				<a href="single-phone.html" class="link btns btns-light medium-text">More</a>
+				<h1 class="medium-text">{{ product.title }}</h1>
+				<p class="small-text">$ {{ product.price }}</p>
+				<a href="{% url 'product' product.id %}" class="link btns btns-light medium-text">More</a>
 			</div>
 		</div>
 

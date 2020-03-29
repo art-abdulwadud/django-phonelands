@@ -5,19 +5,27 @@
 	<h1 class="heading center pt-3 pb-3" id="products">All Products</h1>
 	<div class="card-wrapper">
 		{% for product in products %}
-
-		<div class="card">
+		<div class="card animated rotateIn">
 			<div class="card-img-wrapper">
-				<img src="img/phones/phone1/cover1.jpg" alt="" class="card-img" />
+				<img src="{{ product.main_pic.url }}" alt="" class="card-img" />
 			</div>
 			<div class="card-info ml-2 pb-2">
-				<h1 class="medium-text">Samsung Galaxy Note9</h1>
-				<p class="small-text">$349.99</p>
-				<a href="single-phone.html" class="link btns btns-light medium-text">More</a>
+				<h1 class="medium-text">{{ product.title }}</h1>
+				<p class="small-text">$ {{ product.price }}</p>
+				<a href="{% url 'product' product.id %}" class="link btns btns-light medium-text">More</a>
 			</div>
 		</div>
 
 		{% endfor %}
+	</div>
+	<div class="product-page text-center">
+		<ul class="product-page-list">
+			<li class="product-page-items prev-page"><i class="material-icons">chevron_left</i></li>
+			<li class="product-page-items active-page">1</li>
+			<li class="product-page-items">2</li>
+			<li class="product-page-items">3</li>
+			<li class="product-page-items next-page"><i class="material-icons">chevron_right</i></li>
+		</ul>
 	</div>
 	{% else %}
 	<span class="medium-text">0 Products</span>
