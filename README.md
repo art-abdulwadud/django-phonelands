@@ -504,7 +504,7 @@ Currently, the navbar is not customized
 
 ![now navbar](https://user-images.githubusercontent.com/60689731/77842380-0b7f0f00-719a-11ea-904e-df297189ac5b.png)
 
-In the templates folder create an a folder named `admin`. Within it, create a file named `base_site.html`
+In the templates folder, create a folder named `admin`. Within it, create a file named `base_site.html`
 
 ```
 {% extend 'admin/base.html' %}
