@@ -685,7 +685,7 @@ To create links for each page that's available
 
 Find more on pagination [here](https://docs.djangoproject.com/en/3.0/topics/pagination/)
 
-## Filter displaying data
+## Sort displaying data
 
 This is pretty simple
 
