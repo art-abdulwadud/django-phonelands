@@ -3,7 +3,7 @@ from .models import Product
 from django.core.paginator import Paginator
 
 def index(request):
-	products = Product.objects.all()
+	products = Product.objects.order_by('-date_uploaded')
 
 	paginator = Paginator(products, 9)
 

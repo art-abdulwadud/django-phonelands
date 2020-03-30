@@ -684,3 +684,29 @@ To create links for each page that's available
 ```
 
 Find more on pagination [here](https://docs.djangoproject.com/en/3.0/topics/pagination/)
+
+## Filter displaying data
+
+This is pretty simple
+
+Instead of
+
+```python
+products = Product.objects.all()
+```
+
+Use `order_by()`
+
+```python
+products = Product.objects.order_by('date_uploaded')
+```
+
+For more information on `order_by()`, [click here](https://docs.djangoproject.com/en/3.0/ref/models/querysets/#order-by)
+
+## Importing a model from another app
+
+Am importing the `Product` model from `allproducts` app to `pages` app. Remember, the `Prodcut` model is in `models.py` file in `allproducts` folder
+
+```python
+from allproducts.models import Product
+```

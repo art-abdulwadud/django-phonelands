@@ -30,27 +30,6 @@ droplink.addEventListener('click', () => {
 	}
 });
 
-// Intro slider
-const next = document.querySelector('#next');
-const prev = document.querySelector('#prev');
-
-if (next != null) {
-	next.addEventListener('click', () => {
-		clearInterval(startInterval);
-		animate('next');
-	});
-	prev.addEventListener('click', () => {
-		clearInterval(startInterval);
-		animate('prev');
-	});
-	slideOne.addEventListener('click', () => {
-		animate('first');
-	});
-	slideTwo.addEventListener('click', () => {
-		animate('second');
-	});
-}
-
 // Recent items slider
 const nextImg = document.querySelector('#next-img');
 const prevImg = document.querySelector('#prev-img');
@@ -78,5 +57,3 @@ if (mainImg != null) {
 		});
 	});
 }
-
-

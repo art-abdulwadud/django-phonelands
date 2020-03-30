@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="two-secs first">
+<div class="two-secs offer-slider">
 	<div class="overflow-hidden img-sec p-3 center animated fadeInLeft">
 		<img src="{% static 'img/phones/phone1/cover1.png' %}" alt="user" class="ml-2 intro-img" />
 	</div>
@@ -27,7 +27,7 @@
 		</div>
 	</div>
 </div>
-<div class="d-none second">
+<div class="d-none offer-slider">
 	<div class="overflow-hidden img-sec p-3 center first animated fadeInLeft">
 		<img src="{% static 'img/phones/phone2/cover1.png' %}" alt="user" class="ml-2 intro-img" />
 	</div>
@@ -48,15 +48,12 @@
 				>
 			</div>
 			<div class="price animated rotateInDownLeft four heading">
-				<p class="text-danger cancel">$551.34</p>
-				$349.98
+				<p class="text-danger old-price cancel">$551.34</p>
+				<p class="new-price">$349.98</p>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="slide-btns text-center">
 	<span class="prev cursor" id="prev"><i class="material-icons">chevron_left</i></span>
-	<span class="slide-one cursor"><i class="material-icons">brightness_1</i></span>
-	<span class="slide-two cursor"><i class="material-icons">brightness_1</i></span>
-	<span class="next cursor" id="next"><i class="material-icons">chevron_right</i></span>
 </div>

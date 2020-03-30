@@ -20,6 +20,7 @@ class Product (models.Model):
 	pic_6 = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)	
 	description = models.TextField(blank=True)
 	offer = models.BooleanField(default=False)
+	offer_percentage = models.IntegerField(blank=True)
 	recent = models.BooleanField(default=False)
 	date_uploaded = models.DateTimeField(default=datetime.now, blank=True)
 
