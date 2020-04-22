@@ -1,49 +1,28 @@
 {% extends 'base.html' %} {% load static %} {% block content%}
+
 <section class="intro-sec">
-	<div class="two-secs first">
+	{% for retailer in retailers %}
+	<div class="two-secs offer-slider">
 		<div class="overflow-hidden img-sec p-3 center animated fadeInLeft">
-			<img src="{% static 'img/team/amazon.png' %}" alt="user" class="ml-2 intro-img" />
+			<img src="{{ retailer.pic.url }}" alt="user" class="ml-2 intro-img" />
 		</div>
 		<div class="intro-text pl-2">
 			<p class="sub-heading text-white animated fadeInUp">top retailers</p>
-			<h1 class="heading animated fadeInUp one">Amazon</h1>
-			<p class="small-text animated fadeInUp two p">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic possimus vitae maxime vero iste
-				consequatur quaerat iure, sit similique cupiditate rerum, ea tempore consequuntur nostrum facere porro
-				magni dolorum amet!
-			</p>
+			<h1 class="heading animated fadeInUp one">{{ retailer.name }}</h1>
+			<p class="small-text animated fadeInUp two p">{{ retailer.description }}</p>
 			<div class="two-secs">
 				<div class="price animated rotateInDownLeft four heading">
-					Company
+					{{ retailer.category }}
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="d-none second">
-		<div class="overflow-hidden img-sec p-3 center animated fadeInLeft">
-			<img src="{% static 'img/team/member1.jpeg' %}" alt="user" class="ml-2 intro-img" />
-		</div>
-		<div class="intro-text pl-2">
-			<p class="sub-heading text-white animated fadeInUp">top retailers</p>
-			<h1 class="heading animated fadeInUp one">Abdulwadud</h1>
-			<p class="small-text animated fadeInUp two p">
-				A web developer currently trianing in HTML, CSS and JavaScript. Also working with JavaScript libraries,
-				including jquery and react, and Pyhton frameworks, including Django and Flask.
-			</p>
-			<div class="two-secs">
-				<div class="price animated rotateInDownLeft four heading">
-					Entrepreneur
-				</div>
-			</div>
-		</div>
-	</div>
+	{% endfor %}
 	<div class="slide-btns text-center">
 		<span class="prev cursor" id="prev"><i class="material-icons">chevron_left</i></span>
-		<span class="slide-one cursor"><i class="material-icons">brightness_1</i></span>
-		<span class="slide-two cursor"><i class="material-icons">brightness_1</i></span>
-		<span class="next cursor" id="next"><i class="material-icons">chevron_right</i></span>
 	</div>
 </section>
+
 <section class="about">
 	<div class="intro text-center">
 		<h1 class="heading animated fadeInLeft" id="about">About Us</h1>
@@ -64,7 +43,43 @@
 		</p>
 	</div>
 </section>
+
 <section class="product-list text-center pb-3">
-	{% include 'includes/_productspreview.html' %}
+	<h1 class="heading pt-3 pb-3" id="products">Retailers</h1>
+	<div class="card-wrapper">
+		{% for retailer in retailers %}
+		<div class="card">
+			<div class="card-img-wrapper">
+				<img src="{{ retailer.pic.url }}" alt="{{ retailer.name }}" class="card-img" />
+			</div>
+			<div class="card-info text-left ml-2 pb-2">
+				<h1 class="medium-text blue-ish">{{ retailer.name }}</h1>
+				<p class="small-text">{{ retailer.email }}</p>
+				<p class="small-text">Phone: +{{ retailer.phone }}</p>
+				<p class="medium-text price">{{ retailer.category }}</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
 </section>
+
+<section class="product-list text-center pb-3">
+	<h1 class="heading pt-3 pb-3" id="products">Products</h1>
+	<div class="card-wrapper">
+		{% for product in products %}
+		<div class="card">
+			<div class="card-img-wrapper">
+				<img src="{{ product.main_pic.url }}" alt="{{ product.title }}" class="card-img" />
+			</div>
+			<div class="card-info text-left ml-2 pb-2">
+				<h1 class="medium-text">{{ product.title }}</h1>
+				<p class="small-text">$ {{ product.price }}</p>
+				<a href="{% url 'product' product.id %}" class="link btns btns-light medium-text">Buy</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<a href="/products" class="link btns btns-light medium-text">All Products</a>
+</section>
+
 {% endblock %}

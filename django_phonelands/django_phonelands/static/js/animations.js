@@ -6,8 +6,8 @@ const newPrice = document.querySelectorAll('#new-price');
 const offerPercentage = document.querySelectorAll('#offer-percentage');
 
 // Animation for the intro slider
-const colorToBlack = element => (element.style.color = 'rgba(0,0,0,0.1)');
-const colorToWhite = element => (element.style.color = 'white');
+const colorToBlack = (element) => (element.style.color = 'rgba(0,0,0,0.1)');
+const colorToWhite = (element) => (element.style.color = 'white');
 
 let display = 0;
 let slideLinksArray = [];
@@ -18,12 +18,14 @@ const animate = (slide, chooseSlide = null) => {
 	// Hide all slides
 	for (let i = 0; i < offersSlider.length; i++) {
 		offersSlider[i].setAttribute('class', 'd-none');
-		newPrice[i].innerText = '';
 	}
 	// Displaying one slide at a time
-	offersSlider[display].setAttribute('class', 'offer-slider two-secs');
-	let x = parseFloat(oldPrice[display].innerText) * (parseFloat(offerPercentage[display].innerText) / 100);
-	newPrice[display].innerText = x.toFixed(2);
+	offersSlider[display] != null ? offersSlider[display].setAttribute('class', 'offer-slider two-secs-equal') : null;
+	if (newPrice[display] != null) {
+		let x = parseFloat(oldPrice[display].innerText) * (parseFloat(offerPercentage[display].innerText) / 100);
+		x = parseFloat(oldPrice[display].innerText) - x;
+		newPrice[display].innerText = x.toFixed(2);
+	}
 	// Creating slide links
 	for (let i = 0; i < offersSlider.length; i++) {
 		let slideLink = document.createElement('span');
@@ -49,15 +51,19 @@ const animate = (slide, chooseSlide = null) => {
 		display = chooseSlide;
 		for (let i = 0; i < offersSlider.length; i++) {
 			offersSlider[i].setAttribute('class', 'd-none');
-			newPrice[i].innerText = '';
 		}
-		slideLinksArray.forEach(slideLink => {
+		slideLinksArray.forEach((slideLink) => {
 			colorToBlack(slideLink);
 		});
-		offersSlider[display].setAttribute('class', 'offer-slider two-secs');
-		let x = parseFloat(oldPrice[display].innerText) * (parseFloat(offerPercentage[display].innerText) / 100);
-		newPrice[display].innerText = x.toFixed(2);
-		colorToWhite(slideLinksArray[display]);
+		offersSlider[display] != null
+			? offersSlider[display].setAttribute('class', 'offer-slider two-secs-equal')
+			: null;
+		if (newPrice[display] != null) {
+			let x = parseFloat(oldPrice[display].innerText) * (parseFloat(offerPercentage[display].innerText) / 100);
+			x = parseFloat(oldPrice[display].innerText) - x;
+			newPrice[display].innerText = x.toFixed(2);
+		}
+		slideLinksArray.length != 0 ? colorToWhite(slideLinksArray[display]) : null;
 	}
 };
 // Check if the slider is on the page
@@ -71,8 +77,10 @@ if (offersSlider != null) {
 	let nextIcon = document.createElement('i');
 	nextIcon.setAttribute('class', 'material-icons');
 	nextIcon.innerHTML = 'chevron_right';
-	slideBtns.appendChild(nextSpan);
-	nextSpan.appendChild(nextIcon);
+	if (slideBtns != null) {
+		slideBtns.appendChild(nextSpan);
+		nextSpan.appendChild(nextIcon);
+	}
 	// Go to next slide automaticatlly
 	let autoSlide = setInterval(() => {
 		animate(display, display + 1);
@@ -84,12 +92,15 @@ if (offersSlider != null) {
 	});
 	// Go to previous slide on clicking previous
 	const prev = document.querySelector('#prev');
-	prev.addEventListener('click', () => {
-		clearInterval(autoSlide);
-		display - 1 != 0 ? animate(display, display - 1) : animate(display, offersSlider.length + 1);
-	});
+	if (prev != null) {
+		prev.addEventListener('click', () => {
+			clearInterval(autoSlide);
+			display - 1 != 0 ? animate(display, display - 1) : animate(display, offersSlider.length + 1);
+		});
+	}
+
 	// Creating link for each slide
-	slideLinksArray.forEach(slideLink => {
+	slideLinksArray.forEach((slideLink) => {
 		slideLink.addEventListener('click', () => {
 			clearInterval(autoSlide);
 			slideLinksArray.indexOf(slideLink) != 0

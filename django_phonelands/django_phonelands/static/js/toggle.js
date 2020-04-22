@@ -51,9 +51,11 @@ const mainImg = document.querySelector('.main-img');
 const imgItems = document.querySelectorAll('.img-item');
 
 if (mainImg != null) {
-	imgItems.forEach(imgItem => {
+	imgItems.forEach((imgItem) => {
 		imgItem.addEventListener('mouseover', () => {
 			mainImg.src = imgItem.src;
 		});
 	});
 }
+
+

@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block content%}
 
 <section class="intro-sec">
-	{% for product in products %}
+	{% for product in products %} {% if product.offer %}
 	<div class="two-secs offer-slider">
 		<div class="overflow-hidden img-sec p-3 center animated fadeInLeft">
 			<img src="{{ product.main_pic.url }}" alt="user" class="ml-2 intro-img" />
@@ -11,13 +11,13 @@
 				offer <span id="offer-percentage">{{ product.offer_percentage }}</span>% off
 			</p>
 			<h1 class="heading animated fadeInUp one">{{ product.title }}</h1>
-			<p class="small-text animated fadeInUp two p">{{ product.description }}</p>
+			<p class="small-text animated fadeInUp two p pb-2">{{ product.description }}</p>
 			<div class="two-secs">
 				<div class="intro-btns animated fadeInUp three">
-					<a href="single-phone.html" class="link "
+					<a href="{% url 'product' product.id %}" class="link "
 						><button class="btns btns-light medium-text">Buy</button></a
 					><br />
-					<a href="single-phone.html" class="link"
+					<a href="{% url 'product' product.id %}" class="link"
 						><button class=" btns btns-dark medium-text">More info</button></a
 					>
 				</div>
@@ -29,16 +29,65 @@
 			</div>
 		</div>
 	</div>
-	{% endfor %}
+	{% endif %} {% endfor %}
 	<div class="slide-btns text-center">
 		<span class="prev cursor" id="prev"><i class="material-icons">chevron_left</i></span>
 	</div>
 </section>
 <section class="recent-items">
-	{% include 'includes/_recentproducts.html' %}
+	<div class="two-secs-equal">
+		<div class="black-bg heading uppercase center pt-4 pb-4">secure Payments</div>
+		<div class="white-bg heading uppercase center pt-4 pb-4">free delivery</div>
+	</div>
+	<h1 class="heading center mt-3 mb-3" id="recent">Recently Added</h1>
+	<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
+		<ul class="uk-slider-items uk-grid">
+			{% for product in products %} {% if product.recent %}
+			<li class="uk-width-3-4">
+				<div class="uk-panel">
+					<img src="{{ product.main_pic.url }}" alt="{{ product.title }}" class="r-item" alt="" />
+					<div class="uk-position-center uk-panel">
+						<span class="black-bg animated rotateInDownLeft four heading">$ {{ product.price }}</span><br />
+						<a href="{% url 'product' product.id %}" class="link"
+							><button class="btns btns-light medium-text mt-5">Buy</button></a
+						>
+					</div>
+				</div>
+			</li>
+			{% endif %} {% endfor %}
+		</ul>
+
+		<a
+			class="uk-position-center-left uk-position-small uk-hidden-hover"
+			href="#"
+			uk-slidenav-previous
+			uk-slider-item="previous"
+		></a>
+		<a
+			class="uk-position-center-right uk-position-small uk-hidden-hover"
+			href="#"
+			uk-slidenav-next
+			uk-slider-item="next"
+		></a>
+	</div>
 </section>
 <section class="product-list text-center pb-3">
-	{% include 'includes/_productspreview.html' %}
+	<h1 class="heading pt-3 pb-3" id="products">Products</h1>
+	<div class="card-wrapper">
+		{% for product in products %}
+		<div class="card">
+			<div class="card-img-wrapper">
+				<img src="{{ product.main_pic.url }}" alt="{{ product.title }}" class="card-img" />
+			</div>
+			<div class="card-info text-left ml-2 pb-2">
+				<h1 class="medium-text">{{ product.title }}</h1>
+				<p class="small-text">$ {{ product.price }}</p>
+				<a href="{% url 'product' product.id %}" class="link btns btns-light medium-text">Buy</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<a href="/products" class="link btns btns-light medium-text">All Products</a>
 </section>
 
 {% endblock %}

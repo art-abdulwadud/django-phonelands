@@ -2,13 +2,20 @@
 <footer style="background-image: 'img/backgrounds/bg4.jpg'">
 	<div class="text-area">
 		<div class="two-secs-equal small-text">
-			<div style="grid-area: l;" class="p-2">
-				<a href="index.html" class="link">
-					<img src="{% static 'img/logo.png' %}" alt="" class="intro-img logo" />
-				</a>
+			<div class="links p-2">
+				<h1 class="sub-heading text-white">Links</h1>
+				<div class="grid-display">
+					<a href="{% url 'index' %}" class="navlink link small-text">Home</a>
+					<a class="navlink link small-text" href="{% url 'products' %}">All Products</a>
+					<a class="navlink link small-text" href="/products#recent">Recently Added</a>
+					<a href="{% url 'about' %}" class="navlink link small-text">About</a>
+				</div>
 			</div>
-			<div class="contact m-2 small-text">
-				<div class="blue-bg text-center p-2" style="min-height: 100%;">
+			<div class="contact small-text">
+				<div class="blui-sh-rgba text-center p-2" style="min-height: 100%;">
+					<a href="index.html" class="link">
+						<img src="{% static 'img/logo.png' %}" alt="" height="80" width="120" /> </a
+					><br />
 					<img src="{% static 'img/icons/location.png'%}" alt="user" class="m-2" height="30" width="30" />
 					<a target="_black" href="https://github.com/art-abdulwadud" class="link black">
 						Nairobi, Kenya

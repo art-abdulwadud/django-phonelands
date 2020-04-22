@@ -1,1 +1,99 @@
-<h1>Product</h1>
+{% extends 'base.html' %} {% block content %}
+
+<section class="phone">
+	<div class="phone-images">
+		<div class="main-img-wrapper pt-3 animated bounce">
+			<a
+				class="example-image-link"
+				href="{{ product.main_pic.url }}"
+				data-lightbox="example-set"
+				data-title="Samsung Galaxy Note9"
+				><img class="example-image main-img" src="{{ product.main_pic.url }}" alt="" class="lb-img"
+			/></a>
+		</div>
+		<div class="img-list animated flipInY">
+			<a
+				class="example-image-link"
+				href="{{ product.pic_1.url }}"
+				data-lightbox="example-set"
+				data-title="Samsung Galaxy Note9"
+				><img class="example-image img-item" src="{{ product.pic_1.url }}" alt=""
+			/></a>
+			<a
+				class="example-image-link"
+				href="{{ product.pic_2.url }}"
+				data-lightbox="example-set"
+				data-title="Samsung Galaxy Note9"
+				><img
+					class="example-image img-item"
+					src="{{ product.pic_2.url }}"
+					alt=""
+					height="100"
+					width="80"
+					class="lb-img"
+			/></a>
+			{% if product.pic_3 %}
+			<a
+				class="example-image-link"
+				href="{{ product.pic_3.url }}"
+				data-lightbox="example-set"
+				data-title="Samsung Galaxy Note9"
+				><img class="example-image img-item" src="{{ product.pic_3.url }}" alt=""
+			/></a>
+
+			{% endif %} {% if product.pic_4 %}
+			<a
+				class="example-image-link"
+				href="{{ product.pic_4.url }}"
+				data-lightbox="example-set"
+				data-title="Samsung Galaxy Note9"
+				><img class="example-image img-item" src="{{ product.pic_4.url }}" alt=""
+			/></a>
+			{% endif %} {% if product.pic_5 %}
+			<a
+				class="example-image-link"
+				href="{{ product.pic_5.url }}"
+				data-lightbox="example-set"
+				data-title="Samsung Galaxy Note9"
+				><img class="example-image img-item" src="{{ product.pic_5.url }}" alt=""
+			/></a>
+			{% endif %} {% if product.pic_6 %}
+			<a
+				class="example-image-link"
+				href="{{ product.pic_6.url }}"
+				data-lightbox="example-set"
+				data-title="Samsung Galaxy Note9"
+				><img class="example-image img-item" src="{{ product.pic_6.url }}" alt=""
+			/></a>
+			{% endif %}
+		</div>
+	</div>
+	<div class="phone-specs pt-2 animated flipInX">
+		<h1 class="heading pl-2">
+			{{ product.title }} {% if product.offer %}
+			<span class="blue-ish">offer <span id="offer-percentage">{{ product.offer_percentage }}</span>% off</span>
+			{% endif %}
+		</h1>
+		<p class="small-text p-2">{{ product.description }}</p>
+		<p class="medium-text p-2">
+			Retailer: <span class="blue-ish">{{ product.retailer }}</span><br /><span class="price"
+				>{{ product.retailer.category }}</span
+			>
+		</p>
+		<div class="intro-btns text-center animated fadeInLeft three p-2 mb-2">
+			<a href="cart.html" class="link"><button class="btns btns-light medium-text">Add to cart</button></a>
+			{% if product.offer %}
+			<div class="price animated rotateInDownLeft four heading">
+				<span class="text-danger cancel">$<span id="old-price">{{ product.price }}</span></span>
+				$ <span class="{{ product.title }}" id="new-price"></span> <br />
+			</div>
+			{% else %}
+			<p class="price animated rotateInUpLeft four heading d-inline-block ml-2">
+				$ {{ product.price }}
+			</p>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+{% endblock %}

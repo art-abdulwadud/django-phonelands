@@ -45,5 +45,42 @@
 	<span class="medium-text">0 Products</span>
 	{% endif %}
 </section>
+<section class="recent-items">
+	<div class="two-secs-equal">
+		<div class="black-bg heading uppercase center pt-4 pb-4">secure Payments</div>
+		<div class="white-bg heading uppercase center pt-4 pb-4">free delivery</div>
+	</div>
+	<h1 class="heading center mt-3 mb-3" id="recent">Recently Added</h1>
+	<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
+		<ul class="uk-slider-items uk-grid">
+			{% for product in products %} {% if product.recent %}
+			<li class="uk-width-3-4">
+				<div class="uk-panel">
+					<img src="{{ product.main_pic.url }}" alt="{{ product.title }}" class="r-item" alt="" />
+					<div class="uk-position-center uk-panel">
+						<span class="black-bg animated rotateInDownLeft four heading">$ {{ product.price }}</span><br />
+						<a href="{% url 'product' product.id %}" class="link"
+							><button class="btns btns-light medium-text mt-5">Buy</button></a
+						>
+					</div>
+				</div>
+			</li>
+			{% endif %} {% endfor %}
+		</ul>
+
+		<a
+			class="uk-position-center-left uk-position-small uk-hidden-hover"
+			href="#"
+			uk-slidenav-previous
+			uk-slider-item="previous"
+		></a>
+		<a
+			class="uk-position-center-right uk-position-small uk-hidden-hover"
+			href="#"
+			uk-slidenav-next
+			uk-slider-item="next"
+		></a>
+	</div>
+</section>
 
 {% endblock %}

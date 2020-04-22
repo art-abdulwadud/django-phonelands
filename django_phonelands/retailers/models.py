@@ -3,9 +3,9 @@ from datetime import datetime
 
 class Retailer(models.Model):
 	name = models.CharField(max_length=255)
-	category_choices = [('org', 'organization'), ('ent', 'enterprenuer')]
-	pic = models.ImageField(upload_to='images/%Y/%m/%d')
+	category_choices = [('organization', 'organization'), ('enterprenuer', 'enterprenuer')]
 	category = models.CharField(max_length=20,choices=category_choices,default='organization')
+	pic = models.ImageField(upload_to='images/%Y/%m/%d')
 	top_retailer = models.BooleanField(default=False)
 	description = models.TextField(blank=True)
 	email = models.CharField(max_length=60)
