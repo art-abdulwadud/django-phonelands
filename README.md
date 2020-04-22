@@ -330,8 +330,15 @@ You should now be able to see the database you created and more. In my case:
 Note: Install this package if it's not already installed. You can find out if it's installed by typing `pip list`
 
 ```
-pip install psycopg2-binary
+pip install psycopg2 psycopg2-binary
 ```
+Note: If you run into `building wheel for psycopg2` error after installing them, then run these commands
+```
+pip uninstall psycopg2 psycopg2-binary
+pip install wheel
+pip install psycopg2 psycopg2-binary
+```
+
 
 Edit `settings.py` file in the `DATABASES` section
 
