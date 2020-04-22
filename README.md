@@ -26,7 +26,7 @@ pip install django
 Create a django project
 
 ```
-djangi-admin startproject name_of_project
+django-admin startproject name_of_project
 ```
 
 Run django server
