@@ -94,6 +94,15 @@ urlpatterns = [
 
 Note: `include` has to be imported
 
+Test to see if this works by running this in the terminal
+
+```
+python manage.py runserver
+```
+and then check `localhost:8000` in your web browser.
+
+Note: For now, you can ignore the `unupplied migrations` error in the terminal.
+
 ## Adding templates
 
 Go to `setting.py` and in the `TEMPLATES`, edit `DIRS`
