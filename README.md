@@ -275,7 +275,7 @@ and you'll enter the postgres shell. Now create a new password
 ```
 
 As soon as you enter this, it will prompt you to create a new password.
-Create a database
+Create password then you can create a database
 
 ```
 CREATE DATABASE newdb;
